@@ -1,8 +1,8 @@
 [Unit]
-Description=Daily 6:55 AM timer for Spotify Autoplay playlist : "Racer"
+Description=Daily 8:55 AM timer for Spotify Autoplay playlist : "Racer"
 
 [Timer]
-OnCalendar=*-*-* 06:55
+OnCalendar=*-*-* 08:55
 Persistent=true
 Unit=spotify-autoplay.service
 
