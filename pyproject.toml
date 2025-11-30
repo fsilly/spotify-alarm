@@ -1,4 +1,7 @@
 [tool.poetry]
+package-mode = false
+
+[project]
 name = "spotify-alarm"
 version = "0.1.0"
 description = ""

@@ -2,10 +2,29 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+mkdir -p ./logs
+mkdir -p ./secrets/
+touch ./logs/play.log
+
 echo "[SETUP] Installing Poetry dependencies..."
 poetry install --no-root
 
 mkdir -p logs ~/.config/systemd/user
+
+
+
+
+SERVICE_FILE="./service/spotify-autoplay.service"
+CURRENT_DIR="$(pwd)"
+
+# Escape slashes for sed
+ESCAPED_DIR=$(printf '%s\n' "$CURRENT_DIR" | sed 's/[\/&]/\\&/g')
+
+# Replace WorkingDirectory line
+sed -i "s|^WorkingDirectory=.*|WorkingDirectory=$ESCAPED_DIR|" "$SERVICE_FILE"
+
+echo "[SETUP] Succesfully setup service CWD as $(pwd)"
+
 
 echo "[SETUP] Installing systemd user service and timer..."
 cp service/spotify-autoplay.service ~/.config/systemd/user/

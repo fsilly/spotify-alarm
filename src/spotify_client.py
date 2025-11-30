@@ -30,7 +30,7 @@ def make_client():
         redirect_uri=redirect_uri,
         scope=SCOPE,
         username=username,
-        cache_path=".cache-spotify-" + (username or "default")
+        cache_path="./secrets/cache-spotify-" + (username or "default")
     )
 
     # Create client
